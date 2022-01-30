@@ -15,7 +15,6 @@ struct MapPosition
 
 using PositionVector = std::vector<MapPosition>;  
 using MapVectorRaw = std::vector<std::vector<int>>;
-
 class Map
 {
 
@@ -35,15 +34,18 @@ class Map
 
     static Map map_from_file(std::ifstream &file);
     static Map map_from_file(const std::string &file_path);
-    
+    //nezajem jen testovaci
     bool is_legit()const;
 
-    
+    // Map pozice -> in, tyletype -> vrati to prvni kde ten type je (existuje jeden cil a zacatek, takhle najdes)
     MapPosition &get_special_tile(MapPosition &out, TileType type) const;
+    // Vraci position vektor vsechn moznych dalsich pozice z pozice current
     PositionVector &get_next_possible(const MapPosition &current, PositionVector &vectorOut) const;
-
+    // dam pozici a jakej typ tile tam chci a ono ho na te pozici pokude nenarusi pravidla
     bool updateTile(const MapPosition &to_update, TileType type);
 
+    // pomocny funkce na pretizeni zavorejk Map(3,7) -> vrati tiletype na 3,7
+    // nemusi uplne zajimat
     TileType operator()(int x, int y)const;
     TileType operator()(const MapPosition &pos)const;
 

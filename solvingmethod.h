@@ -5,19 +5,20 @@
 #include <vector>
 #include <list>
 #include <memory>
-
+// dulezite pro backtracking, jak jsem se sem dostal
 struct PositionPair{
   MapPosition from;
   MapPosition current;
 };
 
+// aby to slo obarvit
 struct ValuedTransition
 {
   PositionPair transition;
   double value;
   friend bool operator==(const ValuedTransition &first, const ValuedTransition &sec);
 };
-
+// reseni co je zkontrolovano co neni
 struct Solution
 {
   std::vector<ValuedTransition> unchecked;
@@ -27,9 +28,9 @@ struct Solution
 
 struct SolutionDecorator
 {
-  Solution const *sol;
-  bool finished;
-  bool found_way;
+  Solution const *sol; // reseni ^^
+  bool finished; // metoda skoncila
+  bool found_way; // naslo cestu nebo nezdar?
 };
 
 
